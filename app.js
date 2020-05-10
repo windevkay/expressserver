@@ -1,20 +1,20 @@
-const http = require('http');
-
 const express = require('express');
+const bodyParser = require('body-parser');
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 const app = express();
 
-app.use((req, res, next) => {
-  // eslint-disable-next-line no-console
-  console.log('In middleware');
-  next();
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+
+// add 404 page for unhandled routes
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => {
-  res.send('Hello from Express');
+  res.status(404).send('page not found..');
 });
 
-const server = http.createServer(app);
-
-server.listen(3000);
+app.listen(3000);
