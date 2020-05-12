@@ -1,20 +1,29 @@
+const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const adminRoutes = require('./routes/admin');
+const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// specify and configure template engines
+app.set('view engine', 'pug');
+app.set('views', 'views');
 
-app.use('/admin', adminRoutes);
+app.use(bodyParser.urlencoded({ extended: false }));
+// this middleware allows us to be able to use and read static files such as css from the public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
 // add 404 page for unhandled routes
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => {
-  res.status(404).send('page not found..');
+  // res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).render('404');
 });
 
 app.listen(3000);

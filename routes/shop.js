@@ -1,12 +1,20 @@
+/* eslint-disable no-unused-vars */
 const path = require('path');
 
 const express = require('express');
+
+const rootDir = require('../utils/path');
+
+const adminData = require('./admin');
 
 const router = express.Router();
 
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
+  // console.log(adminData.products);
+  // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
+  const { products } = adminData;
+  res.render('shop', { prods: products, docTitle: 'Shop' });
 });
 
 module.exports = router;
