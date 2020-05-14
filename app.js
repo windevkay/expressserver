@@ -9,7 +9,7 @@ const shopRoutes = require('./routes/shop');
 const app = express();
 
 // specify and configure template engines
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +23,7 @@ app.use(shopRoutes);
 // eslint-disable-next-line no-unused-vars
 app.use((req, res, next) => {
   // res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-  res.status(404).render('404');
+  res.status(404).render('404', { pageTitle: 'Page Not Found' });
 });
 
 app.listen(3000);
