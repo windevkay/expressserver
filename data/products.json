@@ -1,1 +1,9 @@
-[{"title":"MacBook"},{"title":"Shamballa Bracelets"},{"title":"Nikon Camera"}]
+[
+  {
+    "id": "3689p",
+    "title": "Apple Mac",
+    "imageUrl": "https://www.macobserver.com/wp-content/uploads/2017/05/Windows-10-Mac-1200x631.jpg",
+    "description": "Apple desktop computer",
+    "price": "650"
+  }
+]
