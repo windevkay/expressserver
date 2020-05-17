@@ -8,6 +8,7 @@ const {
   getAddProduct,
   postAddProduct,
   getProducts,
+  getEditProduct,
 } = adminController;
 
 // GET - routes to the add product page
@@ -16,5 +17,7 @@ router.get('/add-product', getAddProduct);
 router.get('/products', getProducts);
 // POST - takes data posted from the add products page and routes to home page
 router.post('/add-product', postAddProduct);
+// GET - fetch the route and display page to edit products
+router.get('/edit-product/:productId', getEditProduct);
 
 module.exports = router;
